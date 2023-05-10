@@ -11,7 +11,7 @@ function App() {
             <Route element={<Suspense fallback={<Splash/>}><HomePage/> </Suspense>} index="/"/>
             <Route
                 element={<Suspense fallback={<Splash/>}><TransactionDetailPage/> </Suspense>}
-                index="/blocks/:blockHash/transactions/:transactionHash"
+                index="/transactions/:transactionHash"
             />
         </Routes>
     )
