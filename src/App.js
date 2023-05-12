@@ -8,10 +8,10 @@ const TransactionDetailPage = lazy(() => import("./pages/transactions/transactio
 function App() {
     return (
         <Routes>
-            <Route element={<Suspense fallback={<Splash/>}><HomePage/> </Suspense>} index="/"/>
+            <Route element={<Suspense fallback={<Splash/>}><HomePage/> </Suspense>} path="/"/>
             <Route
                 element={<Suspense fallback={<Splash/>}><TransactionDetailPage/> </Suspense>}
-                index="/transactions/:transactionHash"
+                path="/transactions/:transactionHash"
             />
         </Routes>
     )

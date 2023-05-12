@@ -9,10 +9,10 @@ const settings = {
 
 const getTransactionReceipt = createAsyncThunk(
     'transactions/getTransactionReceipt',
-    async ({tx}, thunkAPI) => {
+    async ({transactionHash}, thunkAPI) => {
     try {
         const alchemy = new Alchemy(settings);
-        return await alchemy.core.getTransactionReceipt(tx);
+        return await alchemy.core.getTransactionReceipt(transactionHash);
     }catch (e) {
         return thunkAPI.rejectWithValue(e);
     }

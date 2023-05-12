@@ -16,10 +16,10 @@ import {
 } from "@mui/material";
 import {VisibilityOutlined} from "@mui/icons-material";
 import {Link} from "react-router-dom";
-import Text from "./Text";
+import Text from "./text";
+import moment from "moment";
 
 const Block = ({block}) => {
-    console.log(block.transactions)
     return (
         <Stack spacing={2}>
             <Card variant="elevation" elevation={1}>
@@ -39,26 +39,34 @@ const Block = ({block}) => {
                         </Box>
                         <Box>
                             <Typography variant="body2" sx={{color: "text.secondary", mb: 1}}>Gas Limit</Typography>
-                            <Typography variant="body1" sx={{color: "text.primary",}}>{parseInt(block?.gasLimit)}</Typography>
+                            <Typography variant="body1"
+                                        sx={{color: "text.primary",}}>{parseInt(block?.gasLimit)}</Typography>
                         </Box>
                         <Box>
                             <Typography variant="body2" sx={{color: "text.secondary", mb: 1}}>Gas Used</Typography>
-                            <Typography variant="body1" sx={{color: "text.primary",}}>{parseInt(block?.gasUsed)}</Typography>
+                            <Typography variant="body1"
+                                        sx={{color: "text.primary",}}>{parseInt(block?.gasUsed)}</Typography>
                         </Box>
                         <Box>
                             <Typography variant="body2" sx={{color: "text.secondary", mb: 1}}>Nonce</Typography>
-                            <Typography variant="body1" sx={{color: "text.primary",}}>{parseInt(block?.nonce)}</Typography>
+                            <Typography variant="body1"
+                                        sx={{color: "text.primary",}}>{parseInt(block?.nonce)}</Typography>
                         </Box>
                         <Box>
                             <Typography variant="body2" sx={{color: "text.secondary", mb: 1}}>Timestamp</Typography>
-                            <Typography variant="body1" sx={{color: "text.primary",}}>{block?.timestamp}</Typography>
+                            <Typography
+                                variant="body1"
+                                sx={{color: "text.primary",}}>
+                                {/*{moment(block?.timestamp).fromNow()}*/}
+                            </Typography>
                         </Box>
                     </Stack>
                 </CardContent>
             </Card>
 
             <Box>
-                <Typography variant="h4" sx={{color: "text.secondary"}}>Transactions ({block?.transactions?.length})</Typography>
+                <Typography variant="h4" sx={{color: "text.secondary"}}>Transactions
+                    ({block?.transactions?.length})</Typography>
                 <Divider sx={{my: 2}} variant="middle"/>
                 <TableContainer component={Paper} elevation={1}>
                     <Table size="small">
@@ -83,10 +91,11 @@ const Block = ({block}) => {
                                         <TableCell><Text text={transaction.from}/></TableCell>
                                         <TableCell>{parseInt(transaction.value)}</TableCell>
                                         <TableCell>
-                                            <Link
-                                                style={{textDecoration: "none"}}
-                                                to={`/transactions/${transaction.hash}`}>
-                                                <Tooltip title={`View transaction receipt`}>
+                                            <Tooltip title={`View transaction receipt`}>
+                                                <Link
+                                                    style={{textDecoration: "none"}}
+                                                    to={`/transactions/${transaction.hash}`}>
+
                                                     <VisibilityOutlined
                                                         sx={{
                                                             color: "secondary.main",
@@ -98,8 +107,8 @@ const Block = ({block}) => {
                                                             borderColor: "light.secondary"
                                                         }}
                                                     />
-                                                </Tooltip>
-                                            </Link>
+                                                </Link>
+                                            </Tooltip>
                                         </TableCell>
                                     </TableRow>
                                 )
